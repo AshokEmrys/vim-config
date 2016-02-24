@@ -77,7 +77,7 @@ let g:nerdtree_tabs_open_on_console_startup=1
 let NERDTreeMapOpenInTab='<ENTER>'
 
 " Hide files in NERDTree
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.swp$']
 " NERDTree End
 
 " ctrl+l to switch to right tab
