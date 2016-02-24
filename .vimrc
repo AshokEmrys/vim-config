@@ -33,6 +33,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Nopik/vim-nerdtree-direnter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'mhinz/vim-signify'
+Plugin 'ParokshaX/conque'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
