@@ -1,0 +1,5 @@
+# VIM Swap files
+*.swp
+
+#Ignore VIM Bundle
+bundle/
