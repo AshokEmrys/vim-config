@@ -28,7 +28,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
+Plugin 'ParokshaX/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Nopik/vim-nerdtree-direnter'
 Plugin 'tpope/vim-fugitive'
