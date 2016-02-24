@@ -93,6 +93,7 @@ nnoremap <S-t> :ConqueTermSplit bash<CR>
 " TAB Number
 
 set tabline=%!MyTabLine()  " custom tab pages line
+
 function MyTabLine()
         let s = '' " complete tabline goes here
         " loop through each tab page
@@ -108,30 +109,21 @@ function MyTabLine()
                 let s .= ' '
                 " set page number string
                 let s .= t + 1 . ' '
-                " get buffer names and statuses
-                let n = ''      "temp string for buffer names while we loop and check buftype
                 let m = 0       " &modified counter
                 let bc = len(tabpagebuflist(t + 1))     "counter to avoid last ' '
                 " loop through each buffer in a tab
-                for b in tabpagebuflist(t + 1)
-                        " buffer types: quickfix gets a [Q], help gets [H]{base fname}
-                        " others get 1dir/2dir/3dir/fname shortened to 1/2/3/fname
-                        if getbufvar( b, "&buftype" ) == 'help'
-                                let n .= '[H]' . fnamemodify( bufname(b), ':t:s/.txt$//' )
-                        elseif getbufvar( b, "&buftype" ) == 'quickfix'
-                                let n .= '[Q]'
-                        else
-                                let n .= pathshorten(bufname(b))
-                        endif
+                let buflist = tabpagebuflist(t + 1)
+                let activebuf = tabpagewinnr(t + 1)
+                let file = bufname(buflist[activebuf - 1])
+                let file = fnamemodify(file, ':p:t')
+                if file == ''
+                    let file = '[New]'
+                endif
+                for b in buflist
                         " check and ++ tab's &modified count
                         if getbufvar( b, "&modified" )
                                 let m += 1
                         endif
-                        " no final ' ' added...formatting looks better done later
-                        if bc > 1
-                                let n .= ' '
-                        endif
-                        let bc -= 1
                 endfor
                 " add modified label [n+] where n pages in tab are modified
                 if m > 0
@@ -145,12 +137,9 @@ function MyTabLine()
                 else
                         let s .= '%#TabLine#'
                 endif
-                " add buffer names
-                if n == ''
-                        let s.= '[New]'
-                else
-                        let s .= n
-                endif
+                " add active buffer name
+                let s .= ' '
+                let s .= file
                 " switch to no underlining and add final space to buffer list
                 let s .= ' '
         endfor
