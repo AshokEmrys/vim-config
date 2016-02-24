@@ -86,6 +86,9 @@ nnoremap <C-l> gt
 " ctrl+h to switch to left tab
 nnoremap <C-h> gT
 
+" Conque Mapping
+nnoremap <S-w> :q!<CR>
+nnoremap <S-t> :ConqueTermSplit bash<CR>
 
 " TAB Number
 
